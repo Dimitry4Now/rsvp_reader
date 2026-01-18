@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		wordsShown++;
 		updateStatus();
 
-		if (progressive && wordsShown % 25 === 0 && currentWpm < wpm) {
+		if (progressive && wordsShown % 5 === 0 && currentWpm < wpm) {
 			currentWpm += 25;
 		}
 

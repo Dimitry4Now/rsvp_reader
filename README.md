@@ -11,7 +11,7 @@ https://dimitry4now.github.io/rsvp_reader/
 - ORP Highlighting - Highlights optimal recognition point (~30% into each word)
 - Precise Centering - Dynamically centers ORP letter using bounding rects
 - WPM Control - 180-800 WPM with live slider feedback
-- Progressive Mode - Ramps from 200 WPM to target (+25 WPM/25 words)
+- Progressive Mode - Ramps from 200 WPM to target (+25 WPM/5 words)
 - Smart Timing - Periods (x1.6), commas (x1.3), normal words (1x)
 - Dark/Light Themes - Toggle with sun/moon switch
 - Progress Tracking - Current passage + word count
