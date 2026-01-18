@@ -28,10 +28,11 @@ https://dimitry4now.github.io/rsvp_reader/
 
 ## File Structure
 
-index.html     - Main app (HTML structure)
-app.js         - RSVP logic + ORP + timing
-style.css      - Responsive design + themes
-README.md      - This file
+- index.html     - Main app (HTML structure)
+- app.js         - RSVP logic + ORP + timing
+- texts.js       - Textual entries
+- style.css      - Responsive design + themes
+- README.md      - This file
 
 ## Performance
 
@@ -42,7 +43,7 @@ README.md      - This file
 
 ## Customization
 
-Add your own reading passages in app.js:
+Add your own reading passages in texts.js:
 
 const texts = [
   { title: "Your Title", content: "Your text here..." },
