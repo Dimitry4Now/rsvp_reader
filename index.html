@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>RSVP Reader</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+	<div class="top-controls">
+		<label class="theme-toggle">
+			<span class="icon moon">🌑</span>
+			<input type="checkbox" id="themeSwitch" />
+			<span class="slider"></span>
+			<span class="icon sun">☀️ </span>
+		</label>
+	</div>
+
+	<div class="status">
+		<div id="current-title"></div>
+		<div id="word-count">0 / 0</div>
+	</div>
+
+	<div class="reader">
+		<div id="focus-line-top" class="focus-line-top"></div>
+		<div id="focus-line-bottom" class="focus-line-bottom"></div>
+		<div id="word"></div>
+	</div>
+
+	<div class="controls">
+		<label>
+			WPM:
+			<input type="range" id="wpm" min="180" max="800" value="300" />
+			<span id="wpmValue">300</span>
+		</label>
+
+		<label>
+			<input type="checkbox" id="progressive" checked />
+			Progressive
+		</label>
+
+		<button id="start">Start</button>
+		<button id="pause">Stop</button>
+	</div>
+
+	<script src="app.js" defer></script>
+</body>
+</html>
