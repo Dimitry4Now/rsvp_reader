@@ -23,7 +23,7 @@ https://dimitry4now.github.io/rsvp_reader/
 
 1. Adjust WPM (180-800) using slider
 2. Toggle Progressive mode (gradual speedup)
-3. Click Start - reads random passage if the text area is empty. Or the pasted text if there is.
+3. Click Start - reads random passage if the text area is empty. Or the pasted text if there is any.
 4. Pause/Stop anytime
 5. Theme toggle top-right
 
