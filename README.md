@@ -57,9 +57,9 @@ Already live on GitHub Pages!
 
 ## Speed Reading Guide
 
-180-250 WPM = Normal reading
-300-400 WPM = Good speed
-500-700 WPM = Advanced
+180-250 WPM = Normal reading; 
+300-400 WPM = Good speed; 
+500-700 WPM = Advanced; 
 800+ WPM    = Expert
 
 
