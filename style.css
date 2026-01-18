@@ -15,11 +15,9 @@ body {
 	font-family: system-ui, sans-serif;
 	background: var(--bg);
 	color: var(--fg);
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	min-height: 100vh !important;
+	padding: 20px !important;
+	display: block !important; 
 }
 
 .top-controls {
@@ -78,7 +76,7 @@ input:checked + .slider::before {
 	width: 2px;
 	background: var(--muted);
 	left: 50%;
-	transform: translateX(-50%);  /* ADD THIS LINE */
+	transform: translateX(-50%);
 	pointer-events: none;
 	z-index: 10;
 }
@@ -139,27 +137,31 @@ button {
 }
 
 .custom-text-section {
-	width: 90%;
-	max-width: 800px;
-	margin: 1rem auto;
-	padding: 0 1rem;
+	width: 90% !important;
+	max-width: 800px !important;
+	margin: 1rem auto !important;
+	padding: 0 !important;
+	display: block !important;
 }
 
 #customText {
-	width: 100%;
-	height: 200px;
-	margin-bottom: 0;
-	resize: vertical;
-	padding: 1rem;
-	border: 2px solid #666;
-	background: #1a1a1a;
-	color: #fff;
-	border-radius: 8px;
-	font-size: 16px;
-	line-height: 1.5;
-	font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-	box-sizing: border-box;
-	transition: all 0.3s ease;
+	width: 100% !important;
+	min-height: 200px !important;
+	height: 200px !important;
+	max-height: 400px !important;
+	margin: 1rem auto !important;
+	display: block !important;
+	resize: vertical !important;
+	padding: 1rem !important;
+	border: 2px solid #666 !important;
+	background: #1a1a1a !important;
+	color: #fff !important;
+	border-radius: 8px !important;
+	font-size: 16px !important;
+	line-height: 1.5 !important;
+	font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+	box-sizing: border-box !important;
+	transition: all 0.3s ease !important;
 }
 
 #customText:focus {
@@ -188,7 +190,6 @@ button {
 	box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
-/* Ensure controls stay compact below */
 .controls {
 	max-width: 500px;
 	margin: 2rem auto;

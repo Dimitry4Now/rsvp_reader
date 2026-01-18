@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	wpmSlider.value = 300;
 	wpmValue.textContent = 300;
 
-	// Hide status initially
 	titleEl.textContent = "";
 	countEl.textContent = "";
 
@@ -65,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("start").onclick = () => {
 		clearTimeout(timer);
 		
-		// Load custom or random text
 		const custom = loadCustomText();
 		if (custom) {
 			titleEl.textContent = custom.title;
