@@ -16,13 +16,14 @@ https://dimitry4now.github.io/rsvp_reader/
 - Dark/Light Themes - Toggle with sun/moon switch
 - Progress Tracking - Current passage + word count
 - Random Texts - Multiple reading passages
+- Custom Text - Paste the wanted text in the text area and get it displayed
 - Zero Dependencies - Pure vanilla JavaScript
 
 ## Usage
 
 1. Adjust WPM (180-800) using slider
 2. Toggle Progressive mode (gradual speedup)
-3. Click Start - reads random passage
+3. Click Start - reads random passage if the text area is empty. Or the pasted text if there is.
 4. Pause/Stop anytime
 5. Theme toggle top-right
 

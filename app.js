@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let index = 0;
 	let timer = null;
 	let currentTextIndex = 0;
+	let isCustomText = false;
 
 	let progressive = true;
 	let currentWpm = 200;
@@ -11,10 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	const wordEl = document.getElementById("word");
 	const wpmSlider = document.getElementById("wpm");
 	const wpmValue = document.getElementById("wpmValue");
+	const customTextEl = document.getElementById("customText");
+	const titleEl = document.getElementById("current-title");
+	const countEl = document.getElementById("word-count");
 
 	let wpm = 300;
 	wpmSlider.value = 300;
 	wpmValue.textContent = 300;
+
+	// Hide status initially
+	titleEl.textContent = "";
+	countEl.textContent = "";
 
 	wpmSlider.oninput = () => {
 		wpm = +wpmSlider.value;
@@ -32,16 +40,51 @@ document.addEventListener("DOMContentLoaded", () => {
 		return Math.floor(word.length * 0.35);
 	}
 
+	function loadCustomText() {
+		const text = customTextEl.value.trim();
+		if (text) {
+			isCustomText = true;
+			words = text.split(/\s+/);
+			return { title: "Custom entered text", wordCount: words.length };
+		}
+		return null;
+	}
+
 	function loadRandomText() {
 		currentTextIndex = Math.floor(Math.random() * texts.length);
 		words = texts[currentTextIndex].content.split(/\s+/);
+		isCustomText = false;
 		console.log(`Loaded: "${texts[currentTextIndex].title}" (${words.length} words)`);
+		return { title: texts[currentTextIndex].title, wordCount: words.length };
 	}
 
 	function updateStatus() {
-		document.getElementById("current-title").textContent = texts[currentTextIndex].title;
-		document.getElementById("word-count").textContent = `${index} / ${words.length}`;
+		countEl.textContent = `${index} / ${words.length}`;
 	}
+
+	document.getElementById("start").onclick = () => {
+		clearTimeout(timer);
+		
+		// Load custom or random text
+		const custom = loadCustomText();
+		if (custom) {
+			titleEl.textContent = custom.title;
+		} else {
+			const random = loadRandomText();
+			titleEl.textContent = random.title;
+		}
+		
+		index = 0;
+		wordsShown = 0;
+		currentWpm = progressive ? 200 : wpm;
+		document.getElementById("start").textContent = "Start";
+		updateStatus();
+		step();
+	};
+
+	document.getElementById("pause").onclick = () => {
+		clearTimeout(timer);
+	};
 
 	function renderWord(word) {
 		wordEl.innerHTML = "";
@@ -54,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			wordEl.appendChild(span);
 		});
 
-		// Calculate actual offset by measuring rendered elements
 		const orpLetter = wordEl.children[orpIndex];
 		const orpRect = orpLetter.getBoundingClientRect();
 		const wordRect = wordEl.getBoundingClientRect();
@@ -82,23 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			currentWpm += 25;
 		}
 
-		timer = setTimeout(step, getDelay());
+		if (index < words.length) {
+			timer = setTimeout(step, getDelay());
+		}
 	}
-
-	document.getElementById("start").onclick = () => {
-		clearTimeout(timer);
-		loadRandomText();
-		index = 0;
-		wordsShown = 0;
-		currentWpm = progressive ? 200 : wpm;
-		document.getElementById("start").textContent = "Start";
-		updateStatus();
-		step();
-	};
-
-	document.getElementById("pause").onclick = () => {
-		clearTimeout(timer);
-	};
 
 	const themeSwitch = document.getElementById("themeSwitch");
 	themeSwitch.onchange = () => {
@@ -110,9 +139,5 @@ document.addEventListener("DOMContentLoaded", () => {
 			document.body.classList.remove("light");
 		}
 	};
-
-	// Initialize with random text
-	loadRandomText();
-	updateStatus();
 });
 
