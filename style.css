@@ -250,3 +250,23 @@ button:hover {
 	}
 }
 
+.word-group {
+	display: inline-block;
+	margin: 0 8px;
+}
+
+.word-group:not(.center-word) .letter {
+	opacity: 0.6;
+	font-size: 0.85em;
+}
+
+.center-word {
+	font-size: 1.1em;
+}
+
+.center-word .orp {
+	color: var(--orp);
+	font-weight: 600;
+	text-shadow: 0 0 8px rgba(255, 77, 109, 0.5);
+}
+

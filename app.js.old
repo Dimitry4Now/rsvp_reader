@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	let timer = null;
 	let currentTextIndex = 0;
 	let isCustomText = false;
-	let wordsPerDisplay = 1;
 
 	let progressive = true;
 	let currentWpm = 200;
@@ -13,8 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const wordEl = document.getElementById("word");
 	const wpmSlider = document.getElementById("wpm");
 	const wpmValue = document.getElementById("wpmValue");
-	const wordsPerDisplaySlider = document.getElementById("wordsPerDisplay");
-	const wordsPerDisplayValue = document.getElementById("wordsPerDisplayValue");
 	const customTextEl = document.getElementById("customText");
 	const titleEl = document.getElementById("current-title");
 	const countEl = document.getElementById("word-count");
@@ -22,8 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	let wpm = 300;
 	wpmSlider.value = 300;
 	wpmValue.textContent = 300;
-	wordsPerDisplaySlider.value = 1;
-	wordsPerDisplayValue.textContent = 1;
 
 	titleEl.textContent = "";
 	countEl.textContent = "";
@@ -31,11 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	wpmSlider.oninput = () => {
 		wpm = +wpmSlider.value;
 		wpmValue.textContent = wpm;
-	};
-
-	wordsPerDisplaySlider.oninput = () => {
-		wordsPerDisplay = +wordsPerDisplaySlider.value;
-		wordsPerDisplayValue.textContent = wordsPerDisplay;
 	};
 
 	document.getElementById("progressive").onchange = e => {
@@ -94,43 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		clearTimeout(timer);
 	};
 
-	function renderWords() {
+	function renderWord(word) {
 		wordEl.innerHTML = "";
-		const startIdx = Math.max(0, index);
-		const endIdx = Math.min(words.length, startIdx + wordsPerDisplay);
-		const centerWordIdx = Math.floor(startIdx + (endIdx - startIdx) / 2);
-		
-		for (let i = startIdx; i < endIdx; i++) {
-			const word = words[i] || "";
-			const isCenter = i === centerWordIdx;
-			const wordDiv = document.createElement("div");
-			wordDiv.className = `word-group ${isCenter ? 'center-word' : ''}`;
-			
-			const orpIndex = getORPIndex(word);
-			[...word].forEach((char, j) => {
-				const span = document.createElement("span");
-				span.textContent = char;
-				span.className = `letter ${j === orpIndex ? "orp" : ""}`;
-				wordDiv.appendChild(span);
-			});
-			
-			wordEl.appendChild(wordDiv);
-		}
+		const orpIndex = getORPIndex(word);
 
-		// Center the center word's ORP
-		if (wordEl.children.length > 0) {
-			const centerWord = wordEl.querySelector('.center-word');
-			if (centerWord) {
-				const orpLetter = centerWord.querySelector('.orp');
-				if (orpLetter) {
-					const orpRect = orpLetter.getBoundingClientRect();
-					const containerRect = wordEl.getBoundingClientRect();
-					const offset = orpRect.left - containerRect.left + (orpRect.width / 2);
-					wordEl.style.left = "50%";
-					wordEl.style.transform = `translateX(${-offset}px)`;
-				}
-			}
-		}
+		[...word].forEach((char, i) => {
+			const span = document.createElement("span");
+			span.textContent = char;
+			span.className = `letter ${i === orpIndex ? "orp" : ""}`;
+			wordEl.appendChild(span);
+		});
+
+		const orpLetter = wordEl.children[orpIndex];
+		const orpRect = orpLetter.getBoundingClientRect();
+		const wordRect = wordEl.getBoundingClientRect();
+		const preciseOffset = orpRect.left - wordRect.left + (orpRect.width / 2);
+	
+		wordEl.style.left = "50%";
+		wordEl.style.transform = `translateX(${-preciseOffset}px)`;
 	}
 
 	function getDelay() {
@@ -142,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	function step() {
-		renderWords();
+		renderWord(words[index]);
 		index++;
 		wordsShown++;
 		updateStatus();
