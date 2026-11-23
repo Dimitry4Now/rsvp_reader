@@ -8,40 +8,31 @@ https://dimitry4now.github.io/rsvp_reader/
 
 ## Features
 
-- ORP Highlighting - Highlights optimal recognition point (~30% into each word)
-- Precise Centering - Dynamically centers ORP letter using bounding rects
-- WPM Control - 180-800 WPM with live slider feedback
-- Progressive Mode - Ramps from 200 WPM to target (+25 WPM/5 words)
-- Smart Timing - Periods (x1.6), commas (x1.3), normal words (1x)
-- Dark/Light Themes - Toggle with sun/moon switch
-- Progress Tracking - Current passage + word count
-- Random Texts - Multiple reading passages
-- Custom Text - Paste the wanted text in the text area and get it displayed
-- Zero Dependencies - Pure vanilla JavaScript
+- ORP highlighting - the optimal recognition point (about a third into each word) is coloured and held on the focus lines
+- Precise centering - the ORP letter is centred from its measured position, so long and short words don't jump around
+- WPM control - 180-800 words per minute; moving the slider changes a reading already under way
+- Words per display - 1, 3 or 5 at a time, still at the chosen WPM
+- Progressive mode - starts at 200 WPM and adds 25 every 5 words, up to the slider
+- Smart timing - a word or group ending a sentence stays up x1.6, one ending a clause (`,` `;` `:`) x1.3
+- Pause and resume - continue from the same word; Space does the same
+- Dark and light themes - follows the system until switched, then remembered
+- Custom text - paste anything into the text area; leave it empty for a random passage
+- Phone-friendly layout; no dependencies, no build step (about 11 KB gzipped)
 
 ## Usage
 
-1. Adjust WPM (180-800) using slider
-2. Adjust WPD (1-5) using slider #Latest update
-3. Toggle Progressive mode (gradual speedup)
-4. Click Start - reads random passage if the text area is empty. Or the pasted text if there is any.
-5. Pause/Stop anytime
-6. Theme toggle top-right
+1. Paste a text, or leave the box empty for a random passage
+2. Set the WPM and the words per display (WPD)
+3. Leave Progressive on to ease into the speed, or off to start at it
+4. Start reads from the beginning; Pause / Resume, or Space, stops and continues
+5. The switch in the top right changes the theme
 
-## File Structure
+## File structure
 
-- index.html     - Main app (HTML structure)
-- app.js         - RSVP logic + ORP + timing
-- texts.js       - Textual entries
-- style.css      - Responsive design + themes
-- README.md      - This file
-
-## Performance
-
-- <10KB total - Instant loading
-- 60fps rendering - Smooth transitions
-- Mobile-friendly - Touch controls
-- No build step - Edit & deploy instantly
+- `index.html` - the page
+- `app.js` - reading loop, ORP, timing, controls
+- `texts.js` - the built-in passages
+- `style.css` - layout and both themes
 
 ## Customization
 
@@ -54,9 +45,7 @@ const texts = [
 
 ## Deployment
 
-Already live on GitHub Pages!
-1. Push changes: git add . && git commit -m "update" && git push
-2. Auto-deploys to https://dimitry4now.github.io/rsvp_reader/
+GitHub Pages serves the `master` branch at https://dimitry4now.github.io/rsvp_reader/, so whatever is merged into `master` is live a minute later. To try a change first, open `index.html` in a browser: there is nothing to build.
 
 ## Speed Reading Guide
 
