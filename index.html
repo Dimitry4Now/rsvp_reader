@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Speed reading with Rapid Serial Visual Presentation: one word at a time, its focus letter held still." />
 	<title>RSVP Reader</title>
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body class="dark">
+	<script>
+		// Before anything is drawn, so a light theme doesn't flash dark first.
+		(function () {
+			var saved = localStorage.getItem("rsvp-theme");
+			var light = saved ? saved === "light" : matchMedia("(prefers-color-scheme: light)").matches;
+			document.body.className = light ? "light" : "dark";
+		})();
+	</script>
 	<div class="top-controls">
 		<label class="theme-toggle">
 			<span class="icon moon">🌑</span>
@@ -49,7 +59,7 @@
 		</label>
 
 		<button id="start">Start</button>
-		<button id="pause">Stop</button>
+		<button id="pause">Pause</button>
 	</div>
 	
 	<script src="texts.js"></script>
